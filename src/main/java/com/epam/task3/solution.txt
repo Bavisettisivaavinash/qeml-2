@@ -1,0 +1,32 @@
+package com.epam.task3;
+
+import java.util.function.Function;
+
+public interface BonusCalculator extends Function<Double, Double> {
+    @Override
+    Double apply(Double aDouble);
+}
+package com.epam.task3;
+
+import java.util.function.Function;
+
+public interface SalaryCalculator extends Function<Double, Double> {
+    @Override
+    Double apply(Double aDouble);
+}
+package com.epam.task3;
+
+public class SalaryManager {
+    double calculateSalary(SalaryCalculator sc, BonusCalculator bc, double baseSalary){
+        return sc.andThen(bc).apply(baseSalary);
+    }
+}
+package com.epam.task3;
+
+public class Main {
+    public static void main(String[] args) {
+        SalaryManager sm = new SalaryManager();
+        double v = sm.calculateSalary(baseSalary -> baseSalary, baseSalary -> baseSalary + (baseSalary * 0.2), 1000000);
+        System.out.println(v);
+    }
+}

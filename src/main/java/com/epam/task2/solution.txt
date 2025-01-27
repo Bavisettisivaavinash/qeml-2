@@ -1,0 +1,24 @@
+public interface BonusCalculator {
+    double calculateBonus(double salary);
+}
+public class SalaryCalculator {
+    BonusCalculator bonus = salary -> salary * 0.2;
+
+    public double finalSalaryCalculator(double baseSalary){
+        if (baseSalary < 0){
+            throw new IllegalArgumentException("salary must be greater than 0");
+        }
+        return bonus.calculateBonus(baseSalary) + baseSalary;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        double salary = 1000000;
+        SalaryCalculator calc = new SalaryCalculator();
+        try {
+            System.out.println(calc.finalSalaryCalculator(salary));
+        } catch (Exception e) {
+            System.out.println("error" + e.getMessage());
+        }
+    }
+}

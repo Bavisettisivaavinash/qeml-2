@@ -1,0 +1,32 @@
+package com.epam.task1;
+
+public interface CalculateSalary {
+    double calculate(double baseSalary);
+}
+package com.epam.task1;
+
+public class RegularSalaryCalculator implements CalculateSalary{
+    @Override
+    public double calculate(double baseSalary) {
+        if (baseSalary <= 0) {
+            throw new IllegalArgumentException("Base salary must be greater than 0");
+        }
+        double tax = baseSalary * 0.2; // Assume 20% tax
+        double bonus = baseSalary * 0.1; // Assume 10% bonus
+        return baseSalary - tax + bonus;
+    }
+}
+package com.epam.task1;
+
+public class Main {
+    public static void main(String[] args) {
+        RegularSalaryCalculator salaryCalculator = new RegularSalaryCalculator();
+        double baseSalary = 1000000;
+        try {
+            double inHand = salaryCalculator.calculate(baseSalary);
+            System.out.println("effective salary is: " + inHand);
+        }catch (IllegalArgumentException ex){
+            System.out.println("error: "+ex.getMessage());
+        }
+    }
+}
