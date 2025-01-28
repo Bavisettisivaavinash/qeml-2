@@ -1,10 +1,12 @@
-package com.epam.task5;
+public interface SalaryCalculator {
+    double calculateSalary(double baseSalary);
+}
+
 
 public class Employee {
     private String name;
     private int id;
     private double baseSalary;
-    private int rating;
 
     public Employee(String name, int id, double baseSalary) {
         this.name = name;
@@ -23,16 +25,12 @@ public class Employee {
     public double getBaseSalary() {
         return baseSalary;
     }
+}
 
-    public void setRating(int rating) {
-        if (rating <= 10 && rating >= 1){
-            this.rating = rating;
-        }else {
-            throw new IllegalArgumentException("rating should be in between 1 and 10");
-        }
-    }
-
-    public int getRating() {
-        return rating;
+public class Main {
+    public static void main(String[] args) {
+        Employee e1 = new Employee("john", 1, 1000000);
+        SalaryCalculator calculator = d -> d = (d * 0.2);
+        System.out.println(calculator.calculateSalary(e1.getBaseSalary()));
     }
 }
