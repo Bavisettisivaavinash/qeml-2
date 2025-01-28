@@ -18,9 +18,13 @@ public class EmployeeManager {
     private Employee emp10 = new Employee("Judy", 110, 58000);
 
     // Use Arrays.asList() to create a List of Employee
-    public static List<Employee> employees;
+    private List<Employee> employees;
 
     {
         employees = Arrays.asList(emp1, emp2, emp3, emp4, emp5, emp6, emp7, emp8, emp9, emp10);
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
     }
 }
