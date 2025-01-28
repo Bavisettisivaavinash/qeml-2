@@ -4,9 +4,7 @@ import com.epam.task5.Employee;
 import com.epam.task8.EmployeeManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 
 public class Main {
