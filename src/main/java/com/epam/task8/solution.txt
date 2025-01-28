@@ -1,0 +1,67 @@
+public class Employee {
+    private String name;
+    private int id;
+    private double baseSalary;
+    private int rating;
+
+    public Employee(String name, int id, double baseSalary) {
+        this.name = name;
+        this.id = id;
+        this.baseSalary = baseSalary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getBaseSalary() {
+        return baseSalary;
+    }
+
+    public void setRating(int rating) {
+        if (rating <= 10 && rating >= 1){
+            this.rating = rating;
+        }else {
+            throw new IllegalArgumentException("rating should be in between 1 and 10");
+        }
+    }
+
+    public int getRating() {
+        return rating;
+    }
+}
+
+import java.util.Arrays;
+import java.util.List;
+
+public class EmployeeManager {
+    private Employee emp1 = new Employee("Alice", 101, 51000);
+    private Employee emp2 = new Employee("Bob", 102, 50000);
+    private Employee emp3 = new Employee("Charlie", 103, 53000);
+    private Employee emp4 = new Employee("David", 104, 52000);
+    private Employee emp5 = new Employee("Eve", 105, 55000);
+    private Employee emp6 = new Employee("Frank", 106, 54000);
+    private Employee emp7 = new Employee("Grace", 107, 57000);
+    private Employee emp8 = new Employee("Heidi", 108, 56000);
+    private Employee emp9 = new Employee("Ivan", 109, 59000);
+    private Employee emp10 = new Employee("Judy", 110, 58000);
+
+    // Use Arrays.asList() to create a List of Employee
+    public static List<Employee> employees;
+
+    {
+        employees = Arrays.asList(emp1, emp2, emp3, emp4, emp5, emp6, emp7, emp8, emp9, emp10);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        EmployeeManager createListOfEmployees = new EmployeeManager();
+        EmployeeManager.employees.sort((e1, e2) -> Double.compare(e1.getBaseSalary(), e2.getBaseSalary()));
+        EmployeeManager.employees.forEach(e -> System.out.println(e.getName()));
+    }
+}
