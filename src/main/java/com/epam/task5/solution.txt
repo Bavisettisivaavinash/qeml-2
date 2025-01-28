@@ -1,0 +1,91 @@
+public interface VariableSalaryCalculator {
+    double calculate(double baseSalary, double percentage);
+}
+
+public class Employee {
+    private String name;
+    private int id;
+    private double baseSalary;
+
+    public Employee(String name, int id, double baseSalary) {
+        this.name = name;
+        this.id = id;
+        this.baseSalary = baseSalary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getBaseSalary() {
+        return baseSalary;
+    }
+}
+
+public class FullTimeEmployee extends Employee {
+    private double percentage;
+
+    public FullTimeEmployee(String name, int id, double baseSalary, double percentage) {
+        super(name, id, baseSalary);
+        this.percentage = percentage;
+    }
+
+    public double getPercentage() {
+        return percentage;
+    }
+
+}
+
+public class PartTimeEmployee extends Employee{
+    double payPerHour;
+    int numberOfHours;
+
+    public PartTimeEmployee(String name, int id, double baseSalary, double payPerHour, int numberOfHours) {
+        super(name, id, baseSalary);
+        this.payPerHour = payPerHour;
+        this.numberOfHours = numberOfHours;
+    }
+
+    public double getPayPerHour() {
+        return payPerHour;
+    }
+
+    public int getNumberOfHours() {
+        return numberOfHours;
+    }
+}
+
+public class ContractEmployee extends Employee{
+    private double contractAmount;
+
+    public ContractEmployee(String name, int id, double baseSalary, double contractAmount) {
+        super(name, id, baseSalary);
+        this.contractAmount = contractAmount;
+    }
+
+    public double getContractAmount() {
+        return contractAmount;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        FullTimeEmployee fullTime = new FullTimeEmployee("avinash", 1, 1000000, 0.2);
+        PartTimeEmployee partTime = new PartTimeEmployee("john", 2, 0, 80, 40);
+        ContractEmployee contractor = new ContractEmployee("lucy", 3, 0, 4000000);
+
+        VariableSalaryCalculator fulltimeo = (b, p) -> b + (b * p);
+        System.out.println(fulltimeo.calculate(fullTime.getBaseSalary(), fullTime.getPercentage()));
+
+        VariableSalaryCalculator partTimeo = (ph, nh) -> ph * nh;
+        System.out.println(partTimeo.calculate(partTime.getNumberOfHours(), partTime.getPayPerHour()));
+
+        VariableSalaryCalculator contracto = (b, p) -> b + p;
+        System.out.println(contracto.calculate(contractor.getBaseSalary(), contractor.getContractAmount()));
+
+    }
+}
